@@ -1,0 +1,4 @@
+# Static site: the workbench runs entirely in the browser, so there is no build step.
+[build]
+  publish = "public"
+  command = ""

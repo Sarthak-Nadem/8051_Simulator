@@ -1,0 +1,57 @@
+/* Examples library. Extends the original 8051 Lab stylesheet using its own variables and components. */
+.example-tabs{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.example-tab{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:8px;padding:9px 13px;font-size:12px;font-weight:600}
+.example-tab b{font:600 10px var(--mono);color:var(--mint);margin-right:2px}
+.example-tab:hover{border-color:var(--mint);color:var(--txt)}
+.example-tab[aria-selected=true]{background:var(--mint);border-color:var(--mint);color:#fff9ed}
+.example-tab[aria-selected=true] b{color:#fff9ed}
+.example-intro{margin-bottom:14px;background:#fff9ef}
+.example-intro h3{margin-top:10px}
+.example-intro p{max-width:900px}
+.example-points{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 0;padding:0;list-style:none}
+.example-points li{font:10px/1.5 var(--mono);color:#77664e;background:#f4eddf;border:1px solid #e8ddca;border-radius:5px;padding:5px 9px}
+.example-layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:14px;align-items:start}
+.example-picker{display:flex;flex-direction:column;gap:6px;position:sticky;top:96px;min-width:0}
+.example-pick{display:flex;gap:10px;align-items:baseline;text-align:left;border:1px solid var(--line);background:var(--panel);color:var(--txt);border-radius:10px;padding:11px 13px;font-size:12px;font-weight:600;line-height:1.45}
+.example-pick:hover{border-color:var(--mint);background:#f5e8d6}
+.example-pick[aria-pressed=true]{border-color:#d5a26f;background:#f6e5ce;color:var(--mint)}
+.example-pick-number{font:10px var(--mono);color:var(--mint);flex:none}
+.example-card{animation:appear .25s ease-out}
+.example-top{display:flex;flex-wrap:wrap;gap:7px}
+.example-card>h3{font-size:19px;margin:12px 0 8px}
+.example-meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0 0 6px;font:10px var(--mono);color:var(--muted)}
+.example-meta div{display:flex;gap:6px}
+.example-meta dt{text-transform:uppercase;letter-spacing:1px}
+.example-meta dd{margin:0;color:var(--txt);font-weight:600}
+.card p.example-teaches{color:var(--txt);font-size:13px;margin:8px 0 4px}
+.example-body{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px}
+.example-body h4{font:600 10px var(--mono);letter-spacing:1.4px;text-transform:uppercase;color:var(--mint);margin:18px 0 8px}
+.example-source{margin:0;padding:16px;color:#f6d4a5;background:#302c26;font:12px/1.85 var(--mono);overflow:auto;max-height:440px;white-space:pre;tab-size:2}
+.example-source:focus-visible{outline-offset:-3px;outline-color:#dc9661}
+.example-actions{margin-bottom:4px}
+.example-feedback{min-height:17px;margin:0}
+.example-instructions{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.example-instructions li{display:grid;gap:3px;border-left:2px solid #e8ddca;padding-left:10px;font-size:12px;color:var(--muted);line-height:1.65}
+.example-instructions code{color:var(--txt);font-size:11px;font-weight:600}
+.example-math{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.example-math li{font:11px/1.6 var(--mono);color:var(--txt);background:#f8e9d8;border:1px solid #edcaaa;border-radius:7px;padding:8px 10px;overflow-wrap:anywhere}
+.example-table{max-height:none}
+.example-table td,.example-table th{padding:8px 10px}
+.example-flag-row{margin:8px 0 0}
+.example-flags-before{margin:0}
+.example-notes{margin-top:0}
+.example-trace{margin-top:18px;border-top:1px solid var(--line);padding-top:14px}
+.example-trace summary{cursor:pointer;font-size:12px;font-weight:600}
+.example-trace[open] summary{color:var(--mint)}
+.example-trace .log{max-height:260px;white-space:pre;overflow:auto}
+.editor-wrap.loaded{animation:.9s ease-out loaded}
+@keyframes loaded{0%{box-shadow:0 0 0 4px #f0c591}to{box-shadow:0 0 0 0 #f0c59100}}
+@media (width<=1000px){.example-body{grid-template-columns:minmax(0,1fr);gap:4px}}
+@media (width<=760px){
+  .example-layout{grid-template-columns:minmax(0,1fr)}
+  .example-picker{position:static;flex-direction:row;overflow-x:auto;padding-bottom:4px;scroll-snap-type:x proximity}
+  .example-pick{flex:0 0 auto;max-width:240px;scroll-snap-align:start}
+  .example-tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}
+  .example-tab{flex:0 0 auto}
+}
+@media (width<=440px){.example-card{padding:16px}.example-card>h3{font-size:17px}.example-source{font-size:11px;padding:12px}}

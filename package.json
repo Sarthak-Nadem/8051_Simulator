@@ -1,0 +1,14 @@
+{
+  "name": "8051-lab-examples",
+  "private": true,
+  "type": "module",
+  "description": "8051 Lab with a ready-made assembly examples library — static site, no build step.",
+  "scripts": {
+    "test": "node --test tests/engine.test.mjs tests/examples.test.mjs",
+    "test:ui": "node --test tests/ui.test.mjs",
+    "test:all": "node --test tests/"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.64.0"
+  }
+}

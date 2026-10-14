@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8051 Lab — A little code. A lot of discovery.</title>
+<meta name="theme-color" content="#faf7ef">
+<meta name="description" content="Explore the 8051 with an interactive assembly workbench, accurate 8-bit arithmetic, live registers, instruction examples and hands-on quizzes. No setup needed.">
+<meta property="og:title" content="8051 Lab — A little code. A lot of discovery.">
+<meta property="og:description" content="Explore the 8051 with an interactive assembly workbench, accurate 8-bit arithmetic, live registers, instruction examples and hands-on quizzes. No setup needed.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#simulator">Skip to workbench</a>
+<noscript><div class="notice">JavaScript is needed for the simulator, quizzes and interactive examples. Enable JavaScript to experiment; the learning notes below remain available.</div></noscript>
+<header class="topbar">
+  <a class="brand" href="#"><span class="logo">51</span><span>8051<span style="color:var(--mint)">lab.</span></span></a>
+  <nav class="nav" id="navigation" aria-label="Main navigation"><a href="#simulator" class="active">Simulator</a><a href="#learn">Learn</a><a href="#instructions">Instruction set</a><a href="#quiz">Practice</a><a href="#roadmap">Project guide</a></nav>
+  <span class="nav-end"><span class="live-dot"></span>YOUR EMBEDDED PLAYGROUND</span>
+  <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navigation">Menu</button>
+</header>
+<section class="hero">
+  <div><div class="eyebrow">Small chip. Endless possibilities.</div><h1>A little code.<br>A lot of <span>discovery.</span></h1><p>Get hands-on with the 8051. Write assembly, watch the registers come alive, and turn “I think I get it” into “I built it.”</p><div class="hero-actions"><a class="btn primary" href="#simulator">Start experimenting <span aria-hidden="true">↗</span></a><a class="btn" href="#instructions">Explore instruction set <span aria-hidden="true">→</span></a></div><div class="hero-note"><span>No setup needed</span><span>Learn by doing</span><span>Made for curious minds</span></div></div>
+  <div class="hero-art" aria-label="Classic MCS-51 microcontroller: 8-bit CPU, 128 bytes RAM, four register banks and 44 instruction mnemonics">
+    <div class="art-top"><span class="chip">MEET YOUR MICROCONTROLLER</span><span>FIG. 01</span></div>
+    <div class="microchip"><span class="notch"></span><span class="maker">MCS-51 FAMILY</span><strong>8051</strong><div class="chip-specs">8-BIT MICROCONTROLLER<br>ONE INSTRUCTION AT A TIME.</div></div>
+    <div class="chip-grid"><div><b>8-bit</b><small>CPU architecture</small></div><div><b>128 B</b><small>Internal RAM</small></div><div><b>4 banks</b><small>R0–R7 registers</small></div><div><b>44</b><small>Mnemonics</small></div></div>
+    <div class="art-bottom"><span>CLASSIC ARCHITECTURE / REAL EXPLORATION</span><span>● READY</span></div>
+  </div>
+</section>
+<div class="lab-strip"><span class="strip-label">THE LEARNING LOOP</span><span><b>01</b> Write a little assembly</span><span aria-hidden="true">→</span><span><b>02</b> Watch it happen</span><span aria-hidden="true">→</span><span><b>03</b> Make it your own</span></div>
+<main class="wrap" id="main-content">
+<section id="simulator" class="section"><div class="section-head"><div><div class="eyebrow">01 / The workbench</div><h2>Meet your next “aha!” moment.</h2><p>Your code on the left. Every little change on the right.</p></div><span class="tag"><span class="live-dot"></span>41 executable mnemonics</span></div>
+<div class="arithmetic-lab card">
+  <div class="arithmetic-heading"><div><span class="eyebrow">FOUR OPERATIONS. ONE LITTLE CHIP.</span><h3>Let’s do the math.</h3></div><span class="tag">Real 8051 instructions</span></div>
+  <form id="arithmeticForm" class="arithmetic-form" novalidate>
+    <label>Operation<select id="mathOperation" class="formselect"><option value="add">+ Addition</option><option value="sub">− Subtraction</option><option value="mul">× Multiplication</option><option value="div">÷ Division</option></select></label>
+    <label>First value<input id="mathFirst" type="text" value="37" inputmode="text" autocomplete="off" aria-describedby="mathHint mathResult"></label>
+    <label>Second value<input id="mathSecond" type="text" value="21" inputmode="text" autocomplete="off" aria-describedby="mathHint mathResult"></label>
+    <label>Number base<select id="mathBase" class="formselect"><option value="10">Decimal (0–255)</option><option value="16">Hex (00–FF)</option></select></label>
+    <button class="btn primary" type="submit">Calculate & run <span aria-hidden="true">↗</span></button>
+  </form>
+  <p class="hint" id="mathHint">Use whole numbers from 0 to 255. The generated assembly and its results appear in the workbench below.</p>
+  <div id="mathResult" class="math-result" role="status" aria-live="polite">A byte of curiosity goes a long way. Choose your values and try it.</div>
+</div>
+<div class="split">
+<div class="card"><div class="panel-header"><h3>Assembly editor</h3><span class="tag">8051 / ASM</span></div><div class="panel-body"><label class="hint" for="asm">Write your program. Use ; for comments and name: for labels.</label><p class="number-note"><code>#25H</code> = 37 decimal · <code>#25</code> = 25 decimal · Ctrl / ⌘ + Enter to run</p><div class="editor-wrap"><div class="editor-top"><span>experiment.asm</span><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span></div><textarea aria-label="8051 assembly program" id="asm" class="editor" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="simStatus">; Hexadecimal: 25H + 15H = 3AH
+; Decimal: 37 + 21 = 58
+MOV A, #25H
+MOV R0, #15H
+ADD A, R0</textarea><div class="editor-next" id="nextLine">NEXT <code>Loading program…</code></div></div>
+<div class="toolbar"><button class="btn primary" id="run">▶ Run program</button><button class="btn" id="step">Step →</button><button class="btn" id="pause" disabled>Pause</button><button class="btn" id="reset">↺ Reset</button><label for="speed">Speed</label><select id="speed" class="formselect" aria-label="Execution speed"><option value="1">1×</option><option value="4">4×</option><option value="16">16×</option></select></div>
+<div class="toolbar"><select id="sample" class="formselect" aria-label="Example program"><option value="add">Addition</option><option value="sub">Subtraction</option><option value="mul">Multiplication</option><option value="div">Division & remainder</option><option value="divzero">Division by zero</option><option value="logic">Logical operations</option><option value="carry">Carry example</option><option value="wrap">8-bit wraparound</option><option value="loop">Labels & loops</option><option value="memory">RAM & indirect addressing</option><option value="subroutine">Subroutine & stack</option><option value="bcd">BCD arithmetic</option></select><button class="btn" id="loadSample">Load example</button></div>
+<div id="simStatus" class="status good" role="status" aria-live="polite">Ready. Press Step to execute the first instruction.</div><div class="log-heading"><h3>Execution trace</h3><button class="text-button" id="exportTrace">Export trace ↗</button></div><div id="trace" class="log" tabindex="0" aria-label="Execution trace">Program loaded. Ready.</div><button class="text-button" id="exportProgram">Download your program ↓</button></div></div>
+<div class="card"><div class="panel-header"><h3>Live CPU state</h3><span class="tag" id="executionCount">0 STEPS</span></div><div class="panel-body"><div class="stats"><div class="stat"><small>ACCUMULATOR</small><b id="A">00H</b></div><div class="stat"><small>REGISTER B</small><b id="B">00H</b></div><div class="stat"><small>PROGRAM COUNTER</small><b id="PC">0000H</b></div><div class="stat"><small>DATA POINTER</small><b id="DPTR">0000H</b></div></div>
+<div class="flag-row"><span>PSW FLAGS</span><span class="flag-pill">C <b id="C">0</b></span><span class="flag-pill">AC <b id="AC">0</b></span><span class="flag-pill">OV <b id="OV">0</b></span><span class="flag-pill">P <b id="P">0</b></span><span class="hint" id="stackState">SP 07H · BANK 0</span></div>
+<div class="state-tabs" role="tablist" aria-label="CPU memory views"><button id="registerTab" role="tab" aria-selected="true" aria-controls="registerPanel">Registers</button><button id="memoryTab" role="tab" aria-selected="false" aria-controls="memoryPanel" tabindex="-1">Internal RAM</button></div><div id="registerPanel" role="tabpanel" aria-labelledby="registerTab"><div class="tablewrap"><table><thead><tr><th>Register</th><th>Hex</th><th>Decimal</th><th>Binary</th></tr></thead><tbody id="regs"></tbody></table></div>
+</div><div id="memoryPanel" role="tabpanel" aria-labelledby="memoryTab" hidden><div class="tablewrap"><table><thead><tr><th>Address</th><th>Value</th><th>Address</th><th>Value</th></tr></thead><tbody id="ram"></tbody></table></div>
+</div><div class="notice">A learning simulator, not a hardware emulator. Byte-addressed PC, register banks, RAM, stack and PSW are modeled. Timers, interrupts, external/code data memory, pin behavior and cycle timing are not. MOVC, MOVX and RETI are reference-only.</div>
+</div></div></div></section>
+
+<section id="learn" class="section"><div class="section-head"><div><div class="eyebrow">02 / Get your bearings</div><h2>Small concepts. Strong foundations.</h2><p>The essentials, without the wall of text. Try a concept in the workbench.</p></div></div><div class="grid">
+<div class="card"><div class="iconbox">⌘</div><span class="tag">01 · Basics</span><h3>What is the 8051?</h3><p>An 8-bit microcontroller family used to teach embedded systems. A typical classic 8051 includes CPU registers, program and data memory, timers, serial communication and I/O ports.</p></div>
+<div class="card"><div class="iconbox">▦</div><span class="tag">02 · Registers</span><h3>Registers & flags</h3><p>A is the accumulator; R0–R7 are the active register-bank registers. PC tracks program execution. PSW contains status flags including carry, auxiliary carry, overflow and parity.</p></div>
+<div class="card"><div class="iconbox">⇄</div><span class="tag">03 · Addressing</span><h3>Addressing modes</h3><p>Immediate: <code>MOV A,#25H</code>. Register: <code>MOV A,R0</code>. Direct: <code>MOV A,30H</code>. These examples look similar but obtain data from different places.</p></div>
+<div class="card"><div class="iconbox">∑</div><span class="tag">04 · Arithmetic</span><h3>Arithmetic operations</h3><p><code>ADD</code> adds, <code>SUBB</code> subtracts with borrow, <code>MUL AB</code> multiplies, and <code>DIV AB</code> gives a quotient and remainder. Try all four and watch the flags.</p></div>
+<div class="card"><div class="iconbox">◈</div><span class="tag">05 · Logic</span><h3>Logical operations</h3><p><code>ANL</code> is bitwise AND, <code>ORL</code> is bitwise OR, and <code>XRL</code> is XOR. <code>CLR</code> clears a bit/byte and <code>CPL</code> complements it.</p></div>
+<div class="card"><div class="iconbox">↪</div><span class="tag">06 · Flow</span><h3>Branching & control</h3><p>Instructions such as <code>SJMP</code>, <code>JZ</code>, <code>JNZ</code> and <code>DJNZ</code> change execution flow. Try labels and a loop in the simulator to see control flow in action.</p></div>
+</div></section>
+
+<section id="instructions" class="section"><div class="section-head"><div><div class="eyebrow">03 / The instruction set</div><h2>Every instruction has a story.</h2><p>All 44 classic 8051 mnemonics. Find the syntax, understand the flags, then try it.</p></div><span class="tag" id="instructionCount">44 instructions</span></div>
+<div class="searchrow"><input id="search" placeholder="Search e.g. ADD, carry, accumulator…" aria-label="Search instructions"><select id="category" aria-label="Instruction category"><option>All categories</option><option>Data transfer</option><option>Arithmetic</option><option>Logical</option><option>Bit / flags</option><option>Branching</option><option>Machine control</option></select></div>
+<div id="instructionList" class="library"></div>
+</section>
+
+<section id="quiz" class="section"><div class="quiz-layout"><div class="quiz-intro"><div class="eyebrow">04 / Put it into practice</div><h2>A quick check.<br>A little more confidence.</h2><p>Twelve questions to connect the dots. No pressure — every answer comes with an explanation.</p><span class="tag" id="quizScore">0 / 12 correct</span></div><div class="card"><div class="progressbar"><div id="quizProgress"></div></div><div class="hint" id="quizCount">Question 1 of 12</div><p class="quiz-q" id="question" tabindex="-1">Getting your knowledge check ready…</p><div class="answers" id="answers"></div><div class="quiz-feedback" id="feedback" aria-live="polite"></div><div class="toolbar"><button class="btn primary" id="nextQuestion" disabled>Next question →</button><button class="btn" id="restartQuiz">Restart quiz</button></div></div></div>
+</section>
+
+<section id="roadmap" class="section"><div class="section-head"><div><div class="eyebrow">05 / From idea to submission</div><h2>Make it a project.</h2><p>Use this checklist to take the idea from prototype to MPMC submission.</p></div><span class="tag" id="taskCount">0 / 7 complete</span></div>
+<div class="roadmap"><div class="stepcard"><div class="num">PHASE 01</div><h3>Learn basics</h3><p>Understand registers, hex numbers and addressing.</p></div><div class="stepcard"><div class="num">PHASE 02</div><h3>Build simulator</h3><p>Test supported instructions one at a time.</p></div><div class="stepcard"><div class="num">PHASE 03</div><h3>Validate</h3><p>Compare results with a trusted 8051 simulator.</p></div><div class="stepcard"><div class="num">PHASE 04</div><h3>Document</h3><p>Prepare report, screenshots, test cases and viva.</p></div></div>
+<div class="card" style="margin-top:12px"><h3>Submission checklist</h3><div id="checklist">
+<label class="checkrow"><input type="checkbox" data-task="0"> <span><b>Project proposal</b><br><span class="hint">Title, problem statement, objectives and scope.</span></span></label>
+<label class="checkrow"><input type="checkbox" data-task="1"> <span><b>Instruction reference</b><br><span class="hint">Include syntax, operation, addressing and flag effects.</span></span></label>
+<label class="checkrow"><input type="checkbox" data-task="2"> <span><b>Simulator execution</b><br><span class="hint">Run example programs and show register changes.</span></span></label>
+<label class="checkrow"><input type="checkbox" data-task="3"> <span><b>Test cases</b><br><span class="hint">Normal values, wraparound, carry and invalid syntax.</span></span></label>
+<label class="checkrow"><input type="checkbox" data-task="4"> <span><b>Comparison / validation</b><br><span class="hint">Check selected programs against EdSim51 or a lab reference.</span></span></label>
+<label class="checkrow"><input type="checkbox" data-task="5"> <span><b>Report and screenshots</b><br><span class="hint">Architecture, flowchart, implementation, results and limitations.</span></span></label>
+<label class="checkrow"><input type="checkbox" data-task="6"> <span><b>Viva practice</b><br><span class="hint">Explain each instruction and demonstrate the app.</span></span></label>
+</div><div class="progressbar"><div id="taskProgress"></div></div></div>
+</section>
+
+<section id="viva" class="section"><div class="section-head"><div><div class="eyebrow">06 / Talk it through</div><h2>Understand it. Explain it.</h2><p>Click each question to reveal a short answer. Learn to explain, not just memorise.</p></div></div><div class="viva" id="vivaList"></div></section>
+<section class="section"><div class="section-head"><div><h2>Next steps & references</h2></div></div><div class="grid">
+<div class="card"><h3>Reference simulator</h3><p>Use EdSim51 to practise assembly and compare behaviour with your own limited simulator.</p><a class="btn" target="_blank" rel="noopener" href="https://edsim51.com/">Open EdSim51 ↗</a></div>
+<div class="card"><h3>8051 datasheet / architecture</h3><p>Use your course textbook and the specific 8051-family datasheet when verifying instruction behaviour and flag rules.</p></div>
+<div class="card"><h3>Know the boundaries</h3><p>Labels, branches, register banks, RAM, byte-addressed execution and trace export are ready to explore. Hardware timing, interrupts and external peripherals remain outside this learning simulator.</p></div>
+</div></section>
+</main>
+<footer><div class="footer-brand">8051<span style="color:var(--mint)">lab.</span> — Stay curious. Keep experimenting.</div>Educational simulator · Checklist and quiz progress last for this session · Not affiliated with any microcontroller manufacturer.</footer>
+<script type="module">
+import("/lab/app.js").then(module => module.initializeLab()).catch(() => {
+  const status = document.getElementById("simStatus");
+  if (status) { status.textContent = "The workbench could not load. Refresh the page to try again."; status.className = "status bad"; }
+});
+</script>
+</body>
+</html>
